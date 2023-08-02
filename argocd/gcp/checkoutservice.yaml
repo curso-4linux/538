@@ -40,7 +40,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: us.gcr.io/id-projeto/checkoutservice:latest
+          image: us.gcr.io/cluster1-389814/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:

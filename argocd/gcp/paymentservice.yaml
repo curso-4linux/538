@@ -41,7 +41,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/paymentservice:latest
+        image: us.gcr.io/cluster1-389814/paymentservice:latest
         ports:
         - containerPort: 50051
         env:

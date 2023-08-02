@@ -41,7 +41,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/emailservice:latest
+        image: us.gcr.io/cluster1-389814/emailservice:latest
         ports:
         - containerPort: 8080
         env:
