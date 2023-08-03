@@ -1,14 +1,14 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-  resources:
-    - 1-wp-configmap.yaml
-    - 2-wp-secret.yaml
-    - 3.1-backend-claim.yaml
-    - 3.2-frontend-claim.yaml
-    - 4.1-deployment.yaml
-    - 4.2-frontend-deployment.yaml
-    - 5.1-backend-service.yaml
-    - 5.2-frontend-service.yaml
-    - 6-wordpres-ingress.yaml
-    - 7-wordpress-hpa.yaml
+resources:
+  - 1-wp-configmap.yaml
+  - 2-wp-secret.yaml
+  - 3.1-backend-claim.yaml
+  - 3.2-frontend-claim.yaml
+  - 4.1-deployment.yaml
+  - 4.2-frontend-deployment.yaml
+  - 5.1-backend-service.yaml
+  - 5.2-frontend-service.yaml
+  - 6-wordpres-ingress.yaml
+  - 7-wordpress-hpa.yaml
