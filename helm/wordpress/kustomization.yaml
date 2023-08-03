@@ -10,5 +10,5 @@ resources:
   - 4.2-frontend-deployment.yaml
   - 5.1-backend-service.yaml
   - 5.2-frontend-service.yaml
-  - 6-wordpres-ingress.yaml
+  - 6-wordpress-ingress.yaml
   - 7-wordpress-hpa.yaml
