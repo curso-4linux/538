@@ -13,5 +13,5 @@ spec:
   volumes:
   - name: site
     hostPath:
-      path: /mnt/site
+      path: /tmp/site
       type: DirectoryOrCreate
