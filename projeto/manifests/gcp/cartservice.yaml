@@ -41,7 +41,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/cartservice:latest
+        image: us-central1-docker.pkg.dev/id_projeto/cartservice/cartservice:latest
         ports:
         - containerPort: 7070
         env:
