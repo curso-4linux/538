@@ -41,7 +41,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/emailservice:latest
+        image: us-central1-docker.pkg.dev/id_projeto/emailservice/emailservice:latest
         ports:
         - containerPort: 8080
         env:
