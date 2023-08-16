@@ -67,7 +67,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/loadgenerator:latest
+        image: us-central1-docker.pkg.dev/id_projeto/loadgenerator/loadgenerator:latest
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
