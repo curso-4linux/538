@@ -31,7 +31,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: us.gcr.io/id-projeto/frontend:latest
+          image: us-central1-docker.pkg.dev/id_projeto/frontend/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
