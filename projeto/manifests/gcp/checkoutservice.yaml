@@ -40,7 +40,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: us.gcr.io/id-projeto/checkoutservice:latest
+          image: us-central1-docker.pkg.dev/id_projeto/checkoutservice/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:
