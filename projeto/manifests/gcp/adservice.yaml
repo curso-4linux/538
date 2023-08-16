@@ -41,7 +41,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/adservice:latest
+        image: us-central1-docker.pkg.dev/id_projeto/adservice/adservice:latest
         ports:
         - containerPort: 9555
         env:
