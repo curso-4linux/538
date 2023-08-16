@@ -41,7 +41,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/recommendationservice:latest
+        image: us-central1-docker.pkg.dev/id_projeto/recommendationservice/recommendationservice:latest
         ports:
         - containerPort: 8080
         readinessProbe:
