@@ -12,3 +12,11 @@ spec:
   storageClassName: local-storage
   local:
     path: /mnt/site
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/os
+          operator: In
+          values:
+          - linux
