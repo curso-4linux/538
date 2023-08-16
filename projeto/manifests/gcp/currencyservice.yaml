@@ -41,7 +41,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us.gcr.io/id-projeto/currencyservice:latest
+        image: us-central1-docker.pkg.dev/id_projeto/currencyservice/currencyservice:latest
         ports:
         - name: grpc
           containerPort: 7000
