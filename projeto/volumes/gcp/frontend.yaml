@@ -84,11 +84,7 @@ spec:
       initContainers:
       - image: alpine/git
         name: git
-        command:
-        - git
-        - clone
-        - 'https://github.com/curso-4linux/538-frontend-data.git'
-        - '/src'
+        command: ['sh', '-c', 'cd /src && rm -rf ..?* .[!.]* * && git clone https://github.com/curso-4linux/538-frontend-data.git /src']
         volumeMounts:
         - name: frontend-data
           mountPath: /src
