@@ -16,14 +16,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productcatalogservice
+  labels:
+    app: productcatalogservice
+    version: v1
 spec:
   selector:
     matchLabels:
       app: productcatalogservice
+      version: v1
   template:
     metadata:
       labels:
         app: productcatalogservice
+        version: v1
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -41,7 +46,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us-central1-docker.pkg.dev/id_projeto/productcatalogservice/productcatalogservice:latest
+        image: us-central1-docker.pkg.dev/cluster-gke-395217/productcatalogservice/productcatalogservice:latest
         ports:
         - containerPort: 3550
         env:
@@ -57,10 +62,10 @@ spec:
             port: 3550
         resources:
           requests:
-            cpu: 100m
+            cpu: 80m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 180m
             memory: 128Mi
 ---
 apiVersion: v1

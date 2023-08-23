@@ -16,14 +16,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shippingservice
+  labels:
+    app: shippingservice
+    version: v1
 spec:
   selector:
     matchLabels:
       app: shippingservice
+      version: v1
   template:
     metadata:
       labels:
         app: shippingservice
+        version: v1
     spec:
       serviceAccountName: default
       securityContext:
@@ -40,7 +45,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us-central1-docker.pkg.dev/id_projeto/shippingservice/shippingservice:latest
+        image: us-central1-docker.pkg.dev/cluster-gke-395217/shippingservice/shippingservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -57,10 +62,10 @@ spec:
             port: 50051
         resources:
           requests:
-            cpu: 100m
+            cpu: 80m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 180m
             memory: 128Mi
 ---
 apiVersion: v1

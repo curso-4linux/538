@@ -16,14 +16,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: emailservice
+  labels:
+    app: emailservice
+    version: v1
 spec:
   selector:
     matchLabels:
       app: emailservice
+      version: v1
   template:
     metadata:
       labels:
         app: emailservice
+        version: v1
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -41,7 +46,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us-central1-docker.pkg.dev/id_projeto/emailservice/emailservice:latest
+        image: us-central1-docker.pkg.dev/cluster-gke-395217/emailservice/emailservice:latest
         ports:
         - containerPort: 8080
         env:
@@ -59,10 +64,10 @@ spec:
             port: 8080
         resources:
           requests:
-            cpu: 100m
+            cpu: 80m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 180m
             memory: 128Mi
 ---
 apiVersion: v1

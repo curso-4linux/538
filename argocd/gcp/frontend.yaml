@@ -11,24 +11,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
- name: pvc-frontend
-spec:
- storageClassName: nfs-client
- accessModes:
-   - ReadWriteMany
- resources:
-   requests:
-     storage: 5Gi
+
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: frontend
 spec:
-  replicas: 1
+  replicas: 4
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {duration: 60s}
+      - setWeight: 40
+      - pause: {duration: 60s}
+      - setWeight: 60
+      - pause: {duration: 60s}
+      - setWeight: 80
+      - pause: {duration: 60s}
   selector:
     matchLabels:
       app: frontend
@@ -42,7 +43,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: us.gcr.io/cluster1-389814/frontend:latest
+          image: us-central1-docker.pkg.dev/cluster-gke-395217/frontend/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -82,31 +83,13 @@ spec:
             value: "gcp"
           - name: ENABLE_PROFILER
             value: "0"
-          volumeMounts:
-          - mountPath: /src
-            name: frontend-data
           resources:
             requests:
-              cpu: 100m
+              cpu: 80m
               memory: 64Mi
             limits:
-              cpu: 200m
+              cpu: 180m
               memory: 128Mi
-      initContainers:
-      - image: alpine/git
-        name: git
-        command:
-        - git
-        - clone
-        - 'https://github.com/curso-4linux/538-frontend-data.git'
-        - '/src'
-        volumeMounts:
-        - name: frontend-data
-          mountPath: /src
-      volumes:
-      - name: frontend-data
-        persistentVolumeClaim:
-          claimName: pvc-frontend
 ---
 apiVersion: v1
 kind: Service

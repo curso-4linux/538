@@ -15,15 +15,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: loadgenerator
+  labels:
+    app: loadgenerator
+    version: v1
 spec:
   selector:
     matchLabels:
       app: loadgenerator
+      version: v1
   replicas: 1
   template:
     metadata:
       labels:
         app: loadgenerator
+        version: v1
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
@@ -67,7 +72,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us-central1-docker.pkg.dev/id_projeto/loadgenerator/loadgenerator:latest
+        image: us-central1-docker.pkg.dev/cluster-gke-395217/loadgenerator/loadgenerator:latest
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"

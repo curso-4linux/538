@@ -16,14 +16,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: checkoutservice
+  labels:
+    app: checkoutservice
+    version: v1
 spec:
   selector:
     matchLabels:
       app: checkoutservice
+      version: v1
   template:
     metadata:
       labels:
         app: checkoutservice
+        version: v1
     spec:
       serviceAccountName: default
       securityContext:
@@ -40,7 +45,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: us-central1-docker.pkg.dev/id_projeto/checkoutservice/checkoutservice:latest
+          image: us-central1-docker.pkg.dev/cluster-gke-395217/checkoutservice/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -66,10 +71,10 @@ spec:
             value: "cartservice:7070"
           resources:
             requests:
-              cpu: 100m
+              cpu: 80m
               memory: 64Mi
             limits:
-              cpu: 200m
+              cpu: 180m
               memory: 128Mi
 ---
 apiVersion: v1

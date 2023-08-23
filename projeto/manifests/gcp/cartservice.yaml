@@ -16,14 +16,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cartservice
+  labels:
+    app: cartservice
+    version: v1
 spec:
   selector:
     matchLabels:
       app: cartservice
+      version: v1
   template:
     metadata:
       labels:
         app: cartservice
+        version: v1
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -41,7 +46,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: us-central1-docker.pkg.dev/id_projeto/cartservice/cartservice:latest
+        image: us-central1-docker.pkg.dev/cluster-gke-395217/cartservice/cartservice:latest
         ports:
         - containerPort: 7070
         env:
@@ -49,10 +54,10 @@ spec:
           value: "redis-cart:6379"
         resources:
           requests:
-            cpu: 200m
+            cpu: 180m
             memory: 64Mi
           limits:
-            cpu: 300m
+            cpu: 280m
             memory: 128Mi
         readinessProbe:
           initialDelaySeconds: 15

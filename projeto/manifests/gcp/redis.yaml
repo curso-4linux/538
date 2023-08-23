@@ -11,19 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-cart
+  labels:
+    app: redis-cart
+    version: v1
 spec:
   selector:
     matchLabels:
       app: redis-cart
+      version: v1
   template:
     metadata:
       labels:
         app: redis-cart
+        version: v1
     spec:
       securityContext:
         fsGroup: 1000
@@ -56,13 +60,14 @@ spec:
         resources:
           limits:
             memory: 256Mi
-            cpu: 125m
+            cpu: 100m
           requests:
-            cpu: 70m
+            cpu: 50m
             memory: 200Mi
       volumes:
       - name: redis-data
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: pvc-redis
 ---
 apiVersion: v1
 kind: Service

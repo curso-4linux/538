@@ -16,22 +16,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  labels:
+    app: frontend
+    version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: frontend
+      version: v1
   template:
     metadata:
       labels:
         app: frontend
+        version: v1
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: us-central1-docker.pkg.dev/id_projeto/frontend/frontend:latest
+          image: us-central1-docker.pkg.dev/cluster-gke-395217/frontend/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
